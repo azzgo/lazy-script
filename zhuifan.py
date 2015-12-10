@@ -9,7 +9,9 @@ KEY_WORD = [
 ]
 
 import feedparser
-import pprint
+import pickle
+import os
+
 
 def handle():
     for key in KEY_WORD:
@@ -17,4 +19,13 @@ def handle():
         for item in feed.entries:
             yield item.title
 
-import ipdb;ipdb.set_trace()
+record_hash = dict()
+
+if os.path.isfile("./zhuifan.pickle"):
+    open("./zhuifan.pickle") as file:
+        record_hash = pickle.load(file)
+
+for key in KEY_WORD:
+    record = record_hash.get(key, 0)
+    # 如何查询到最新的番种大于记录项, 启动下载, 否则暂停
+    # TODO
