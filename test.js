@@ -1,4 +1,4 @@
 const assert = require('assert');
 
-assert(true);  // OK
+assert(true)
 assert(1);
